@@ -18,7 +18,7 @@ config.keys = {
       key = 'x',
       mods = 'CTRL',
       action = wezterm.action.ActivateKeyTable {
-         name = "c_x",
+         name = "C_x",
          one_shot = true,
       },
    },
@@ -60,15 +60,31 @@ config.keys = {
       mods = 'CTRL',
       action = wezterm.action.PasteFrom 'Clipboard',
    },
+   -- cycle tabs
+   {
+      key = 'Tab',
+      mods = 'CTRL',
+      action = wezterm.action.ActivateTabRelative(1),
+   }
 }
 
 config.key_tables = {
-   c_x = {
+   -- C-x key table
+   C_x = {
       -- C-x 0 closes current window TODO: C-x 1: I don't immediately see CloseOtherPanes or similar
       { key = '0', action = wezterm.action.CloseCurrentPane { confirm = true } },
       -- C-x 2 or 3 splits windows
       { key = '2', action = wezterm.action.SplitVertical },
       { key = '3', action = wezterm.action.SplitHorizontal },
+      -- C-x t activates the tab key table
+      { key = 't', action = wezterm.action.ActivateKeyTable { name = "C_x_t", one_shot = true } },
+   },
+   -- C-x t key table (tabs)
+   C_x_t = {
+      -- C-x t 0 closes current tab
+      { key = '0', action = wezterm.action.CloseCurrentTab { confirm = true } },
+      -- C-x t 2 creates a new tab
+      { key = '2', action = wezterm.action.SpawnTab 'DefaultDomain' },
    },
 }
 
