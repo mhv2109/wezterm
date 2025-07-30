@@ -65,7 +65,28 @@ config.keys = {
       key = 'Tab',
       mods = 'CTRL',
       action = wezterm.action.ActivateTabRelative(1),
-   }
+   },
+   -- up, left, right, down
+   {
+      key = 'p',
+      mods = 'CTRL',
+      action = wezterm.action.SendKey { key = 'UpArrow' },
+   },
+   {
+      key = 'b',
+      mods = 'CTRL',
+      action = wezterm.action.SendKey { key = 'LeftArrow' },
+   },
+   {
+      key = 'f',
+      mods = 'CTRL',
+      action = wezterm.action.SendKey { key = 'RightArrow' },
+   },
+   {
+      key = 'n',
+      mods = 'CTRL',
+      action = wezterm.action.SendKey { key = 'DownArrow' },
+   },
 }
 
 config.key_tables = {
