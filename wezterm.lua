@@ -60,6 +60,11 @@ config.keys = {
       mods = 'CTRL',
       action = wezterm.action.PasteFrom 'Clipboard',
    },
+   {
+      key = 'Space',
+      mods = 'CTRL',
+      action = wezterm.action.ActivateCopyMode,
+   },
    -- cycle tabs
    {
       key = 'Tab',
@@ -106,6 +111,46 @@ config.key_tables = {
       { key = '0', action = wezterm.action.CloseCurrentTab { confirm = true } },
       -- C-x t 2 creates a new tab
       { key = '2', action = wezterm.action.SpawnTab 'DefaultDomain' },
+   },
+   -- make behavior in CopyMode similar to regular behavior
+   copy_mode = {
+      -- select
+      { key = 'Space', mods = 'NONE', action = wezterm.action.CopyMode { SetSelectionMode = 'Cell' } },
+      -- movement
+      { key = 'p', mods = 'CTRL', action = wezterm.action.CopyMode 'MoveUp' },
+      { key = 'UpArrow', mods = 'NONE', action = wezterm.action.CopyMode 'MoveUp' },
+      { key = 'b', mods = 'CTRL', action = wezterm.action.CopyMode 'MoveLeft' },
+      { key = 'LeftArrow', mods = 'NONE', action = wezterm.action.CopyMode 'MoveLeft' },
+      { key = 'f', mods = 'CTRL', action = wezterm.action.CopyMode 'MoveRight' },
+      { key = 'RightArrow', mods = 'NONE', action = wezterm.action.CopyMode 'MoveRight' },
+      { key = 'n', mods = 'CTRL', action = wezterm.action.CopyMode 'MoveDown' },
+      { key = 'DownArrow', mods = 'NONE', action = wezterm.action.CopyMode 'MoveDown' },
+      -- quit
+      {
+        key = 'Escape',
+        mods = 'NONE',
+        action = wezterm.action.Multiple {
+          { CopyMode = 'MoveToScrollbackBottom' },
+          { CopyMode = 'Close' },
+        },
+      },
+      {
+        key = 'g',
+        mods = 'CTRL',
+        action = wezterm.action.Multiple {
+          { CopyMode = 'MoveToScrollbackBottom' },
+          { CopyMode = 'Close' },
+        },
+      },
+      -- copy
+      {
+         key = 'w',
+         mods = 'ALT',
+         action = wezterm.action.Multiple {
+            { CopyTo = 'ClipboardAndPrimarySelection' },
+            { CopyMode = 'ClearSelectionMode' },
+         },
+      },
    },
 }
 
