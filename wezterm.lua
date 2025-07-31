@@ -71,7 +71,7 @@ config.keys = {
       mods = 'CTRL',
       action = wezterm.action.ActivateTabRelative(1),
    },
-   -- up, left, right, down
+   -- up, left, right, down (M-f and M-b are already configured)
    {
       key = 'p',
       mods = 'CTRL',
@@ -117,14 +117,16 @@ config.key_tables = {
       -- select
       { key = 'Space', mods = 'NONE', action = wezterm.action.CopyMode { SetSelectionMode = 'Cell' } },
       -- movement
-      { key = 'p', mods = 'CTRL', action = wezterm.action.CopyMode 'MoveUp' },
       { key = 'UpArrow', mods = 'NONE', action = wezterm.action.CopyMode 'MoveUp' },
-      { key = 'b', mods = 'CTRL', action = wezterm.action.CopyMode 'MoveLeft' },
       { key = 'LeftArrow', mods = 'NONE', action = wezterm.action.CopyMode 'MoveLeft' },
-      { key = 'f', mods = 'CTRL', action = wezterm.action.CopyMode 'MoveRight' },
       { key = 'RightArrow', mods = 'NONE', action = wezterm.action.CopyMode 'MoveRight' },
-      { key = 'n', mods = 'CTRL', action = wezterm.action.CopyMode 'MoveDown' },
       { key = 'DownArrow', mods = 'NONE', action = wezterm.action.CopyMode 'MoveDown' },
+      { key = 'p', mods = 'CTRL', action = wezterm.action.CopyMode 'MoveUp' },
+      { key = 'b', mods = 'CTRL', action = wezterm.action.CopyMode 'MoveLeft' },
+      { key = 'f', mods = 'CTRL', action = wezterm.action.CopyMode 'MoveRight' },
+      { key = 'n', mods = 'CTRL', action = wezterm.action.CopyMode 'MoveDown' },
+      { key = 'b', mods = 'ALT', action = wezterm.action.CopyMode 'MoveBackwardWord' },
+      { key = 'f', mods = 'ALT', action = wezterm.action.CopyMode 'MoveForwardWord' },
       -- quit
       {
         key = 'Escape',
